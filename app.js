@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const dataBaseConnect = require('./middleware/dataBase')
+const dataBaseConnect = require('./middleware/database')
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
