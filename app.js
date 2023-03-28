@@ -1,18 +1,10 @@
 const express = require('express');
 const path = require('path');
-
-const mongoose = require('mongoose');
-
+const dataBaseConnect = require('./middleware/dataBase')
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
-mongoose.connect('mongodb+srv://jeromeperron87:6NxVEEWbZ0Qm7NC6@cluster0.ourjydr.mongodb.net/?retryWrites=true&w=majority',
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
-    .then(() => console.log('Connexion à MongoDB réussie !'))
-    .catch(() => console.log('Connexion à MongoDB échouée !'));
+dataBaseConnect;
 
 const app = express();
 
@@ -24,7 +16,6 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();
 });
-
 
 app.use('/api/sauces', sauceRoutes)
 app.use('/api/auth', userRoutes);
